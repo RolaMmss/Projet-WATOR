@@ -1,5 +1,9 @@
+#############################
+#     Classes needed:       #
+#############################
+
 class World:
-    def display_world(length : int, width : int):
+    def display_world(row : int, col : int):
         pass
     def add_animals():
         pass
@@ -34,7 +38,12 @@ class Shark(Fish):
     
     def reproduce():
         reproduction_time : int
-    
+
+
+
+
+
+
 
 
 
