@@ -1,5 +1,6 @@
 from fish import Fish
 from world import World
+import random as rd
 
 class Shark(Fish):
     def __init__(self, x , y):
@@ -8,8 +9,8 @@ class Shark(Fish):
         self.energy = 7
 
     def move(self):
-        pass
-
+       pass
+   
     def reproduce(self,day,world):
         pass
         # if day % self.reproduction_number  == 0 : #and isinstance(self[self.x][self.y], Fish):
@@ -21,13 +22,21 @@ class Shark(Fish):
         pass
     
     def shark_dead(self, world):
-        if self[self.x][self.y] and isinstance(self[self.x][self.y], Fish):
-           self.energy += 1
+            # Si la case actuelle [x,y] a un objet Fish et si l'energie du requi est < 7
+        if self[self.x][self.y] and isinstance(self[self.x][self.y], Fish) and self.energy < 7:
+            # Augmente l'énergie du requin
+            self.energy += 1
+            # Enléve -1 du nombre des fish dans l'objet "world"
+            world.fishes -= 1
+            # Supprime le poisson de la liste de poissons dans l'objet "world"
+            world.fishes.remove(self[self.x][self.y])
         else:
-           self.energy -= 1
+            # Sinon, enléve - 1 à l'énergie du requin
+            self.energy -= 1
+            # Vérifie si l'énergie du requin est inférieure ou égale à 0
         if self.energy <= 0:
-            world.self.sharks -= 1
-            world.sharks.remove(self)
-            
-    def verification_move(self):
-        pass
+            # Si oui, enléve -1 du nombre des requins dans l'objet "world"
+            world.sharks -= 1
+            # Supprime l'objet requin de la liste de requins dans l'objet "world"
+            world.sharks.remove(self[self.x][self.y])
+  
