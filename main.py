@@ -29,15 +29,15 @@ for i in range(number_of_fish):
 #####################################
 #              START                #
 #####################################
-while day < 6:
+while day < 20:
     print("days : " + str(day))
     world.display_grid()
     for shark in world.sharks:
         shark.move()
-        shark.reproduce()
+        shark.reproduce(day, world)
     for fish in world.fishes:
-        fish.move(world)
-        fish.reproduce()
+        old_x , old_y = fish.move(world)
+        fish.reproduce(day, world , old_x , old_y)
 
     day += 1
     
