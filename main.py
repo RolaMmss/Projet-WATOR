@@ -34,11 +34,12 @@ while day < 20:
     world.display_grid()
     for shark in world.sharks:
         shark.move()
-        shark.reproduce()
+        shark.reproduce(day, world)
     for fish in world.fishes:
-        fish.move(world)
-        fish.reproduce()
+        old_x , old_y = fish.move(world)
+        fish.reproduce(day, world , old_x , old_y)
 
     day += 1
     
     time.sleep(2)
+    os.system("clear")

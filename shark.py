@@ -10,9 +10,13 @@ class Shark(Fish):
     def move(self):
         pass
 
-    def reproduce(self):
+    def reproduce(self,day,world):
         pass
-
+        # if day % self.reproduction_number  == 0 : #and isinstance(self[self.x][self.y], Fish):
+        #     new_shark = Shark()
+        #     world.sharks.append(new_shark)
+        #     world.table[self.y][self.x] = '🦈'   
+                     
     def hunt(self):
         pass
     
