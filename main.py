@@ -42,3 +42,4 @@ while day < 6:
     day += 1
     
     time.sleep(2)
+    os.system("clear")
