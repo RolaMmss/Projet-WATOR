@@ -14,3 +14,9 @@ class Shark(Fish):
 
     def hunt(self):
         pass
+    
+    def shark_dead(self):
+        pass
+    
+    def verification_move(self):
+        pass

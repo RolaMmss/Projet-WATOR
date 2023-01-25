@@ -10,3 +10,5 @@ class Fish:
     def reproduce(self):
         pass
         
+    def verification_move(self):
+        pass
