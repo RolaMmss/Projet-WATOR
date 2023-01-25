@@ -29,8 +29,9 @@ for i in range(number_of_fish):
 #####################################
 #              START                #
 #####################################
-while day < 20:
+while day < 100:
     print("days : " + str(day))
+    print("poissons :" + str(len(world.fishes)))
     world.display_grid()
     for shark in world.sharks:
         shark.move()
@@ -41,5 +42,4 @@ while day < 20:
 
     day += 1
     
-    time.sleep(2)
-    os.system("clear")
+    time.sleep(0.5)
