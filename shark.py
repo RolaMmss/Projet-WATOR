@@ -8,7 +8,7 @@ class Shark(Fish):
         self.reproduction_number = 7
         self.energy = 7
 
-    def move(self,world):
+    def move(self):
        pass
    
     def reproduce(self):
