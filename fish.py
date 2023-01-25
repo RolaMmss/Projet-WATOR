@@ -16,7 +16,7 @@ class Fish:
         world.table[self.y][self.x] = '  '
         self.x = (self.x + dx) % world.cols
         self.y = (self.y + dy) % world.rows
-        world.table[self.y][self.x] = '🐠'
+        world.table[self.x][self.y] = '🐠'
         return old_x , old_y
         
 
