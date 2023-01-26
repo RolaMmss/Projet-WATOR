@@ -21,8 +21,6 @@ class World:
 
     def add_shark(self, shark):
         self.sharks.append(shark)
-        self.table[shark.y][shark.x] = '🦈'
 
     def add_fish(self, fish):
         self.fishes.append(fish)
-        self.table[fish.y][fish.x] = '🐠'

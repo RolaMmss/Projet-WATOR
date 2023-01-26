@@ -19,14 +19,12 @@ class Fish:
             # Met à jour la grille en enlevant le poisson de sa position actuelle
             world.table[self.x][self.y] = '  '
             # Met à jour les coordonnées du poisson
-            print(self.x)
             self.x = new_pos[0]
             self.y = new_pos[1]
-            print(self.x)
             # Met à jour la grille en ajoutant le poisson à sa nouvelle position
             world.table[self.x][self.y] = '🐠'
         return old_x , old_y
-            
+                
     def reproduce(self, world,day,old_x , old_y):
         # Si le poisson s'est déplacé à une nouvelle position
         if day % 4 == 0:
