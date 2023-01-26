@@ -8,38 +8,67 @@ class Shark(Fish):
         self.reproduction_number = 7
         self.energy = 7
 
-    def move(self, world):
+    def move(self, world, day):
         # Enregistre les coordonnées actuelles du requin
         old_x = self.x
         old_y = self.y
-        # Retourne les anciennes coordonnées du requin pour la reproduction
-        return old_x , old_y
+        possible_positions = self.hunt(world)
+        if len(possible_positions) > 0:
+            print(possible_positions)
+            # Choisit aléatoirement une position de la liste possible_positions
+            new_pos = rd.choice(possible_positions)
+            # Met à jour la grille en enlevant le poisson de sa position actuelle
+            world.table[self.x][self.y] = '  '
+            # Met à jour les coordonnées du poisson
+            self.x = new_pos[0]
+            self.y = new_pos[1]
+            # Met à jour la grille en ajoutant le poisson à sa nouvelle position
+            world.table[self.x][self.y] = '🦈'
+            # Retourne les anciennes coordonnées du poisson pour la reproduction
+            self.reproduce(day, world, old_x, old_y)
     
 
    
     def reproduce(self, day, world, old_x, old_y):
-        # Si c'est le jour de reproduction (tous les 4 jours)
+        # Si c'est le jour de reproduction (tous les 6 jours)
         if day % 6 == 0:
             # Si la case où se trouve le requin parent est vide
             if world.table[old_x][old_y] == '  ':
                 # On crée un nouveau requin à la position du parent
                 new_shark = Shark(old_x, old_y)
-                # On met à jour la grille
-                world.table[old_x][old_y] = '🦈'
-                # On ajoute le nouveau requin à la liste des requins
-                world.sharks.append(new_shark)  
+                # on met a jour la grille et on ajoute le nouveau requin à la liste des requins
+                world.add_shark(new_shark)
                      
     def hunt(self,world):      
-        # Recherche les cases pour trouver un poisson
-        for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-            x, y = self.x + dx, self.y + dy
-            if (x >= 0 and x < world.cols) and (y >= 0 and y < world.rows) and isinstance(world.table[x][y], Fish):
-            # Si un poisson est trouvé bouge le requin vers cette case
-                self.x, self.y = x, y
-                return
-        # Si aucun poisson n'est trouvé utilise un mouvement aléatoire
-        self.x, self.y = self.x + rd.choice([(1, 0), (-1, 0), (0, 1), (0, -1)])
-        # Pas de else donc si pas de case disponible pas de mouement
+        # # Recherche les cases pour trouver un poisson
+        # for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+        #     x, y = self.x + dx, self.y + dy
+        #     if (x >= 0 and x < world.cols) and (y >= 0 and y < world.rows) and isinstance(world.table[x][y], Fish):
+        #     # Si un poisson est trouvé bouge le requin vers cette case
+        #         self.x, self.y = x, y
+        #         return
+        
+        #################################################
+        ## Si il ne trouve pas de poisson autour delui ##
+        #################################################
+        # Initialise une liste de positions possibles pour le poisson de se déplacer
+        possible_positions = []
+        #Boucle à travers les déplacements possibles pour le poisson (dx et dy peuvent prendre les valeurs -1, 0, 1)
+        for dx in [-1, 0, 1]:
+            for dy in [-1, 0, 1]:
+                # Calcul les nouvelles coordonnées du poisson en utilisant l'opérateur modulo pour s'assurer 
+                # qu'elles restent dans les limites de la grille en bouclant sur les bords
+                x = (self.x + dx) % world.rows
+                y = (self.y + dy) % world.cols
+                # Vérifie si la case cible ne contient pas un requin ou un autre poisson
+                if world.table[x][y] == '🐠':
+                    possible_positions.append((x, y))
+                    break
+                elif world.table[x][y] != '🦈' and world.table[x][y] != '🐠':
+                    # Ajoute les coordonnées de la case cible à la liste de positions possibles
+                    possible_positions.append((x, y))
+        # Retourne la liste de positions possibles
+        return possible_positions
                     
 
     
