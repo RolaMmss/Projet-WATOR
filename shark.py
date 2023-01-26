@@ -39,7 +39,7 @@ class Shark(Fish):
             world.fishes -= 1  
         else:  
             # Supprime le poisson de la liste de poissons dans l'objet "world"                      
-            world.fishes.remove(self[self.x][self.y]) 
+            world.fishes.remove([self.x][self.y]) 
             # Sinon, enléve - 1 à l'énergie du requin 
             self.energy -= 1                        
             # Vérifie si l'énergie du requin est inférieure ou égale à 0   
@@ -47,4 +47,4 @@ class Shark(Fish):
             # Si oui, enléve -1 du nombre des requins dans l'objet "world"             
             world.sharks -= 1                       
              # Supprime l'objet requin de la liste de requins dans l'objet "world"  
-            world.sharks.remove(self[self.x][self.y]) 
+            world.sharks.remove([self.x][self.y]) 
