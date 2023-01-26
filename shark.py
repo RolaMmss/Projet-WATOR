@@ -40,7 +40,7 @@ class Shark(Fish):
         # Si aucun poisson n'est trouvé utilise un mouvement aléatoire
         self.x, self.y = self.x + rd.choice([(1, 0), (-1, 0), (0, 1), (0, -1)])
         # Pas de else donc si pas de case disponible pas de mouement
-
+                    
 
     
     def shark_dead(self, world):
