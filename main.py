@@ -9,8 +9,8 @@ import os
 #        Initialization            #
 ####################################
 
-number_of_fish = 10        #int(input("Enter the number of fish : "))
-number_of_sharks = 20       #int(input("Enter the number of sharks : "))
+number_of_fish = 40      #int(input("Enter the number of fish : "))
+number_of_sharks = 10      #int(input("Enter the number of sharks : "))
 
 #creation of the world
 day = 1
@@ -33,12 +33,11 @@ while day < 100:
     print("days : " + str(day))
     print("fishes :" + str(len(world.fishes)) + " sharks:" + str(len(world.sharks)))
     world.display_grid()
+    ff = input("entre")
     for shark in world.sharks.copy():
         shark.move(world, day)
     for fish in world.fishes.copy():
         fish.move(world, day)
 
     day += 1
-    
-    time.sleep(1)
     os.system("clear")

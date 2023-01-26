@@ -14,7 +14,6 @@ class Shark(Fish):
         old_y = self.y
         possible_positions = self.hunt(world)
         if len(possible_positions) > 0:
-            print(possible_positions)
             # Choisit aléatoirement une position de la liste possible_positions
             new_pos = rd.choice(possible_positions)
             # Met à jour la grille en enlevant le poisson de sa position actuelle
@@ -52,41 +51,45 @@ class Shark(Fish):
         ## Si il ne trouve pas de poisson autour delui ##
         #################################################
         # Initialise une liste de positions possibles pour le poisson de se déplacer
+    # Initialise une liste de positions possibles pour le poisson de se déplacer
+    # Boucle à travers les déplacements possibles pour le poisson (dx et dy peuvent prendre les valeurs -1, 0, 1)
+         # Initialise une liste de positions possibles pour le poisson de se déplacer
+    # Initialise une liste de positions possibles pour le poisson de se déplacer
         possible_positions = []
-        #Boucle à travers les déplacements possibles pour le poisson (dx et dy peuvent prendre les valeurs -1, 0, 1)
+        v = False
+    # Boucle à travers les déplacements possibles pour le poisson (dx et dy peuvent prendre les valeurs -1, 0, 1)
         for dx in [-1, 0, 1]:
             for dy in [-1, 0, 1]:
-                # Calcul les nouvelles coordonnées du poisson en utilisant l'opérateur modulo pour s'assurer 
-                # qu'elles restent dans les limites de la grille en bouclant sur les bords
+            # Calcul les nouvelles coordonnées du poisson en utilisant l'opérateur modulo pour s'assurer 
+            # qu'elles restent dans les limites de la grille en bouclant sur les bords
                 x = (self.x + dx) % world.rows
                 y = (self.y + dy) % world.cols
-                # Vérifie si la case cible ne contient pas un requin ou un autre poisson
+            # Vérifie si la case cible ne contient pas un requin ou un autre poisson
                 if world.table[x][y] == '🐠':
                     possible_positions.append((x, y))
-                    break
+                    for fish in world.fishes:
+                        if fish.x == x and fish.y == y:
+                            world.fishes.remove(fish)
+                            self.energy += 1
+                            world.table[x][y] = "  "
+                            break
                 elif world.table[x][y] != '🦈' and world.table[x][y] != '🐠':
-                    # Ajoute les coordonnées de la case cible à la liste de positions possibles
+                    v = True
+                # Ajoute les coordonnées de la case cible à la liste de positions possibles
                     possible_positions.append((x, y))
-        # Retourne la liste de positions possibles
+    # Retourne la liste de positions possibles
+        if v == True:
+            self.energy -= 1
+         # self.shark_dead(world, x , y)
         return possible_positions
-                    
+                        
 
     
-    def shark_dead(self, world):
-            # Si la case actuelle ([x,y]) a un objet Fish et si l'energie du requin est < 7
-        if  world.table[self.x][self.y] and isinstance([self.x][self.y], Fish) and self.energy < 7:
-            # Augmente l'énergie du requin
-            self.energy += 1                    
-            # Enléve -1 du nombre des fish dans world    
-            world.fishes -= 1  
-            # Supprime le poisson de la liste des fishes dans world                      
-            world.fishes.remove([self.x][self.y]) 
-        else:  
-            # Sinon, enléve - 1 à l'énergie du requin 
-            self.energy -= 1                        
-            # Vérifie si l'énergie du requin est inférieure ou égale à 0   
-        if  self.energy <= 0:              
-            # Si oui enléve -1 du nombre des requins dans l'objet world            
-            world.sharks -= 1                       
-             # Supprime l'objet requin de la liste de requins dans l'objet world 
-            world.sharks.remove([self.x][self.y]) 
+    def shark_dead(self, world, x , y):
+        if self.energy > 7 :   
+            self.energy = 7                       
+        elif self.energy <= 0:
+            for shark in world.sharks:
+                if shark.x == x and shark.y == y:
+                    world.sharks.remove(shark)
+                    world.table[x][y] = "  "
