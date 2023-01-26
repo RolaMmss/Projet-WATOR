@@ -30,7 +30,7 @@ class Shark(Fish):
    
     def reproduce(self, day, world, old_x, old_y):
         # Si c'est le jour de reproduction (tous les 6 jours)
-        if day % 6 == 0:
+        if day % 10 == 0:
             # Si la case où se trouve le requin parent est vide
             if world.table[old_x][old_y] == '  ':
                 # On crée un nouveau requin à la position du parent
@@ -39,21 +39,6 @@ class Shark(Fish):
                 world.add_shark(new_shark)
                      
     def hunt(self,world):      
-        # # Recherche les cases pour trouver un poisson
-        # for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-        #     x, y = self.x + dx, self.y + dy
-        #     if (x >= 0 and x < world.cols) and (y >= 0 and y < world.rows) and isinstance(world.table[x][y], Fish):
-        #     # Si un poisson est trouvé bouge le requin vers cette case
-        #         self.x, self.y = x, y
-        #         return
-        
-        #################################################
-        ## Si il ne trouve pas de poisson autour delui ##
-        #################################################
-        # Initialise une liste de positions possibles pour le poisson de se déplacer
-    # Initialise une liste de positions possibles pour le poisson de se déplacer
-    # Boucle à travers les déplacements possibles pour le poisson (dx et dy peuvent prendre les valeurs -1, 0, 1)
-         # Initialise une liste de positions possibles pour le poisson de se déplacer
     # Initialise une liste de positions possibles pour le poisson de se déplacer
         possible_positions = []
         v = False
@@ -80,7 +65,8 @@ class Shark(Fish):
     # Retourne la liste de positions possibles
         if v == True:
             self.energy -= 1
-         # self.shark_dead(world, x , y)
+            print(self.energy)
+        self.shark_dead(world, x , y)
         return possible_positions
                         
 
