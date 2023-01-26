@@ -7,25 +7,25 @@ class Fish:
         self.y = y
         self.reproduction_number = 4
 
-    def move(self, world):   
+    def move(self, world , day):   
         # Enregistre les coordonnées actuelles du poisson
         old_x = self.x
         old_y = self.y
-        # Vérifie les cases autour du poisson grâce a la fonction
-        self.verification_move(world)
-        # Déplace le poisson aléatoirement (dx et dy peuvent prendre les valeurs -1, 0, 1)
-        dx = random.choice([-1, 0, 1])
-        dy = random.choice([-1, 0, 1]) if dx == 0 else 0
-        # Met à jour la grille en enlevant le poisson de sa position actuelle
-        world.table[self.x][self.y] = '  '
-        # Met à jour les coordonnées du poisson en utilisant l'opérateur modulo pour s'assurer 
-        # qu'elles restent dans les limites de la grille en bouclant sur les bords
-        self.x = (self.x + dx) % world.rows
-        self.y = (self.y + dy) % world.cols
-        # Met à jour la grille en ajoutant le poisson à sa nouvelle position
-        world.table[self.x][self.y] = '🐠'
-        # Retourne les anciennes coordonnées du poisson pour la reproduction
-        return old_x , old_y
+        # Génère une liste de positions possibles pour le poisson de se déplacer
+        possible_positions = self.verification_move(world)
+        # Si il y a des positions possibles pour le poisson de se déplacer
+        if len(possible_positions) > 0:
+            # Choisit aléatoirement une position de la liste possible_positions
+            new_pos = random.choice(possible_positions)
+            # Met à jour la grille en enlevant le poisson de sa position actuelle
+            world.table[self.x][self.y] = '  '
+            # Met à jour les coordonnées du poisson
+            self.x = new_pos[0]
+            self.y = new_pos[1]
+            # Met à jour la grille en ajoutant le poisson à sa nouvelle position
+            world.table[self.x][self.y] = '🐠'
+            # Retourne les anciennes coordonnées du poisson pour la reproduction
+            self.reproduce(day, world, old_x, old_y)
         
 
     def reproduce(self, day, world, old_x, old_y):
@@ -35,13 +35,25 @@ class Fish:
             if world.table[old_x][old_y] == '  ':
                 # On crée un nouveau poisson à la position du parent
                 new_fish = Fish(old_x, old_y)
-                # On met à jour la grille
-                world.table[old_x][old_y] = '🐠'
-                # On ajoute le nouveau poisson à la liste des poissons
-                world.fishes.append(new_fish)
-            
-            
-        
-    def verification_move(self, world):             
-        if world.table[self.x - 1 ][self.y] == '🐠🦈':
-            print("Coup dur")       
+                # On met à jour la grille et on ajoute le poisson à la liste des poissons
+                world.add_fish(new_fish)
+                  
+    def verification_move(self, world):
+        # Initialise une liste de positions possibles pour le poisson de se déplacer
+        possible_positions = []
+        #Boucle à travers les déplacements possibles pour le poisson (dx et dy peuvent prendre les valeurs -1, 0, 1)
+        for dx in [-1, 0, 1]:
+            for dy in [-1, 0, 1]:
+                # Calcul les nouvelles coordonnées du poisson en utilisant l'opérateur modulo pour s'assurer 
+                # qu'elles restent dans les limites de la grille en bouclant sur les bords
+                x = (self.x + dx) % world.rows
+                y = (self.y + dy) % world.cols
+                # Vérifie si la case cible ne contient pas un requin ou un autre poisson
+                if world.table[x][y] != '🦈' and world.table[x][y] != '🐠':
+                    # Ajoute les coordonnées de la case cible à la liste de positions possibles
+                    possible_positions.append((x, y))
+        # Retourne la liste de positions possibles
+        return possible_positions
+  
+                        
+  

@@ -31,14 +31,13 @@ for i in range(number_of_fish):
 #####################################
 while day < 100:
     print("days : " + str(day))
-    print("fishes :" + str(len(world.fishes)) + "sharks:" + str(len(world.sharks)))
+    print("fishes :" + str(len(world.fishes)) + " sharks:" + str(len(world.sharks)))
     world.display_grid()
-    for shark in world.sharks:
+    for shark in world.sharks.copy():
         old_x , old_y = shark.move(world)
         shark.reproduce(day, world, old_x, old_y)
     for fish in world.fishes.copy():
-        old_x , old_y = fish.move(world)
-        fish.reproduce(day, world, old_x, old_y)
+        fish.move(world, day)
 
     day += 1
     
