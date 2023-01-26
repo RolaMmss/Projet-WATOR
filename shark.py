@@ -33,12 +33,18 @@ class Shark(Fish):
     def shark_dead(self, world):
             # Si la case actuelle ([x,y]) a un objet Fish et si l'energie du requin est < 7
         if  world.table[self.x][self.y] and isinstance([self.x][self.y], Fish) and self.energy < 7:
-            self.energy += 1                            # Augmente l'énergie du requin
-            world.fishes -= 1                           # Enléve -1 du nombre des fish dans l'objet "world"
-            world.fishes.remove(self[self.x][self.y])   # Supprime le poisson de la liste de poissons dans l'objet "world"
-        else:
-            self.energy -= 1                            # Sinon, enléve - 1 à l'énergie du requin
-        if  self.energy <= 0:                           # Vérifie si l'énergie du requin est inférieure ou égale à 0
-            world.sharks -= 1                           # Si oui, enléve -1 du nombre des requins dans l'objet "world"
-            world.sharks.remove(self[self.x][self.y])   # Supprime l'objet requin de la liste de requins dans l'objet "world"
-  
+            # Augmente l'énergie du requin
+            self.energy += 1                    
+            # Enléve -1 du nombre des fish dans l'objet "world"    
+            world.fishes -= 1  
+        else:  
+            # Supprime le poisson de la liste de poissons dans l'objet "world"                      
+            world.fishes.remove(self[self.x][self.y]) 
+            # Sinon, enléve - 1 à l'énergie du requin 
+            self.energy -= 1                        
+            # Vérifie si l'énergie du requin est inférieure ou égale à 0   
+        if  self.energy <= 0:              
+            # Si oui, enléve -1 du nombre des requins dans l'objet "world"             
+            world.sharks -= 1                       
+             # Supprime l'objet requin de la liste de requins dans l'objet "world"  
+            world.sharks.remove(self[self.x][self.y]) 
