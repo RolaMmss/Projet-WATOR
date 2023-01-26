@@ -40,7 +40,7 @@ class Shark(Fish):
         # Si aucun poisson n'est trouvé utilise un mouvement aléatoire
         self.x, self.y = self.x + rd.choice([(1, 0), (-1, 0), (0, 1), (0, -1)])
         # Pas de else donc si pas de case disponible pas de mouement
-                    
+
 
     
     def shark_dead(self, world):
@@ -50,9 +50,9 @@ class Shark(Fish):
             self.energy += 1                    
             # Enléve -1 du nombre des fish dans world    
             world.fishes -= 1  
+            # Supprime le poisson de la liste des fishes dans world                      
+            world.fishes.remove([self.x][self.y]) 
         else:  
-            # Supprime le poisson de la liste de poissons dans world                      
-            world.fishes.remove(self[self.x][self.y]) 
             # Sinon, enléve - 1 à l'énergie du requin 
             self.energy -= 1                        
             # Vérifie si l'énergie du requin est inférieure ou égale à 0   
