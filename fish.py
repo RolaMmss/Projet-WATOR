@@ -2,10 +2,12 @@ from world import World
 import random
 
 class Fish:
+    fish_count = 0
     def __init__(self, x, y):
         self.x = x
         self.y = y
         self.reproduction_number = 4
+
 
     def move(self, world): 
         old_x = self.x
@@ -25,11 +27,13 @@ class Fish:
             world.table[self.x][self.y] = '🐠'
         return old_x , old_y
                 
-    def reproduce(self, world,day,old_x , old_y):
-        # Si le poisson s'est déplacé à une nouvelle position
-        if day % 4 == 0:
+    def reproduce(self, world, day, old_x, old_y):
+        if Fish.fish_count >= (world.cols * world.rows):
+            return
+        if day % self.reproduction_number == 0:
             if world.table[old_x][old_y] == "  ":
                 new_fish = Fish(old_x, old_y)
+                Fish.fish_count += 1
                 world.add_fish(new_fish)
                   
     def verification_move(self, world):
