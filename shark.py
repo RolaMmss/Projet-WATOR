@@ -48,13 +48,14 @@ class Shark(Fish):
                             Fish.fish_count -= 1
                             self.energy += rd.randint(0,1)
                             world.table[x][y] = "  "
+                            self.energy += 1
                             if self.energy > 7:
                                 self.energy = 7
                             break
                 elif world.table[x][y] != '🦈' and world.table[x][y] != '🐠':
                     possible_positions.append((x, y))
         if v == True:
-            self.energy -= 1
+            self.energy -= 2
         return possible_positions
                     
     def shark_dead(self, world):
