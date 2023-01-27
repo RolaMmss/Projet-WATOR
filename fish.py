@@ -28,8 +28,6 @@ class Fish:
         return old_x , old_y
                 
     def reproduce(self, world, day, old_x, old_y):
-        if Fish.fish_count >= (world.cols * world.rows):
-            return
         if day % self.reproduction_number == 0:
             if world.table[old_x][old_y] == "  ":
                 new_fish = Fish(old_x, old_y)
