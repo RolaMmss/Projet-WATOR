@@ -9,13 +9,13 @@ import os
 #        Initialization            #
 ####################################
 
-number_of_fish = 3 #int(input("Enter the number of fish : "))
-number_of_sharks = 1   #int(input("Enter the number of sharks : "))
+number_of_fish = 300 #int(input("Enter the number of fish : "))
+number_of_sharks = 100  #int(input("Enter the number of sharks : "))
 
 #creation of the world
-day = 0
-rows = 5
-cols = 5
+day = 1
+rows = 30
+cols = 30
 world = World(rows, cols)
 
 # Randomly populate grid with sharks and fish
@@ -38,13 +38,17 @@ while True:
     world.display_grid()
     for shark in world.sharks.copy():
           old_x , old_y = shark.move(world)
-          shark.reproduce(world,day,old_x , old_y)
+          shark.reproduce(world,old_x , old_y)
     for fish in world.fishes.copy():
-        old_x , old_y = fish.move(world)
-        fish.reproduce(world,day,old_x , old_y)
+          old_x , old_y = fish.move(world)
+          fish.reproduce(world,day,old_x , old_y)
+    if (world.cols * world.rows) == len(world.fishes) or len(world.sharks) == 0 :
+            print("Fishes Win")
+            exit()
+    world.display_grid()
     print("jours : {}".format(day))
     print("poissons : {} requins: {}".format(len(world.fishes), len(world.sharks)))
-    time.sleep(3)
+    time.sleep(0.2)
     day += 1
-    if
+    
     # os.system("clear")

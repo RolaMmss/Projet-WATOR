@@ -23,4 +23,7 @@ class World:
         self.sharks.append(shark)
 
     def add_fish(self, fish):
+        if len(self.fishes) >= (self.cols * self.rows):
+            return
         self.fishes.append(fish)
+        self.table[fish.x][fish.y] = '🐠'
