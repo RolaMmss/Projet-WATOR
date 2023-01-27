@@ -33,9 +33,6 @@ while day < 500:
     for shark in world.sharks.copy():
           old_x , old_y = shark.move(world)
           shark.reproduce(world,old_x , old_y)
-    if len(world.fishes) == 0:
-            print("Sharks Win")
-            exit()
     for fish in world.fishes.copy():
           old_x , old_y = fish.move(world)
           fish.reproduce(world,day,old_x , old_y)
