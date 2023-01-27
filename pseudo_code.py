@@ -9,22 +9,19 @@ class World:
         pass
     def play_turn():
         pass
-    
-
+#---------------------------------------------
 class Fish:
     def possible_moves():
         pass
     def move():
-        up : y = y+1
-        down : y = y-1
+        up : y = y-1
+        down : y = y+1
         right : x = x+1
         left : x = x-1
         freeze : x == x and y == y 
     def reproduce():
         reproduction_time : int
-
-
-
+#----------------------------------------------
 class Shark(Fish):
     nb_sharks : int
     energy : int
@@ -39,7 +36,9 @@ class Shark(Fish):
     def reproduce():
         reproduction_time : int
 
-
+#############################
+#     Start of the game :   #
+#############################
 
 
 
