@@ -6,8 +6,8 @@ Version 1.0
 Ce projet a été réalisé par Rola, Jehad, Thomas et Rubic lors de la formation Tech IA chez Simplon HDF. Le but est de crée une simulation (Wa-Tor) utilisant le langage de programmation Python. 
 
 
-[Les règles de la Simulation Wa-Tor](https://en.wikipedia.org/wiki/Wa-Tor#Rules)
-[Un exemple de simulation Wa-Tor](https://wa-tor.saidone.org/)
+- [Les règles de la Simulation Wa-Tor](https://en.wikipedia.org/wiki/Wa-Tor#Rules)
+- [Un exemple de simulation Wa-Tor](https://wa-tor.saidone.org/)
 
 
 ## Organisation du dossier
