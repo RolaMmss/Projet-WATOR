@@ -23,7 +23,7 @@ Dans le dossier nous retrouvons plusieurs fichiers:
 
 ### Pré-requis et installation:
 
-- Pour utiliser le jeu il suffit de cloner le projet depuis notre Lien GitHub en [Cliquant Ici](https://github.com/RolaMmss/Projet-WATOR) ;
+- Pour utiliser le jeu il suffit de cloner le projet depuis ce Lien GitHub en [Cliquant Ici](https://github.com/RolaMmss/Projet-WATOR) ;
 - Avoir installé Python sur sa machine ( utiliser un terminal de commande pour lancer la simulation) ;
 - Installer et importer les modules Time, Os et Random si ils ne sont pas présents dans votre distribution de Python.
 
