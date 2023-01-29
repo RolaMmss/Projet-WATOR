@@ -1,6 +1,8 @@
 # Projet-WATOR
 Version 1.0
 
+
+
 ## Description du Projet
 
 Ce projet a été réalisé par Rola, Jehad, Thomas et Rubic lors de la formation Tech IA chez Simplon HDF. Le but est de crée une simulation (Wa-Tor) utilisant le langage de programmation Python. 
@@ -19,6 +21,8 @@ Dans le dossier nous retrouvons plusieurs fichiers:
 - Shark : regroupant la classe "Shark" et ses fonctionnalités
 - Fish : regroupant la classe "Fish" et ses fonctionnalités.
 
+
+
 ## Utiliser Wa-Tor 
 
 ### Pré-requis et installation:
@@ -29,6 +33,6 @@ Dans le dossier nous retrouvons plusieurs fichiers:
 
 ### Création de l'environement  et lancement de la simulation:
 - Choisissez un nombre de poissons "**number_of_fish**", un nombre de requins "**number_of_Sharks**"pour peupler votre monde;
-- Définissez les dimensions de votre environement en choisissant le nombre de lignes er de collones "**rows**","**cols**";
+- Définissez les dimensions de votre environement en choisissant le nombre de lignes et de collones "**rows**","**cols**";
 - Lancez "main.py" dans votre terminal.
 
