@@ -6,19 +6,19 @@ import time
 import os
 
 ####################################
-#        Initialization            #
+#        Initialisation           #
 ####################################
 
-number_of_fish = 100 #int(input("Enter the number of fish : "))
-number_of_sharks = 70 #int(input("Enter the number of sharks : "))
+number_of_fish = 100
+number_of_sharks = 70
 
-#creation of the world
+# Création de l'environnement
 day = 1
-rows = 70
-cols = 70
+rows = 40
+cols = 40
 world = World(rows, cols)
 
-# Randomly populate grid with sharks and fish
+# Ajout aléatoire de requins et de poissons dans l'environnement
 for i in range(number_of_sharks):
     shark = Shark(rd.randint(1,rows - 1), rd.randint(1,cols - 1))
     world.add_shark(shark)
@@ -27,9 +27,7 @@ for i in range(number_of_fish):
      fish = Fish(rd.randint(1, rows - 1), rd.randint(1, cols - 1))
      world.add_fish(fish)
 
-#####################################
-#              START                #
-#####################################
+# Boucle principale de la simulation
 while True:
     for shark in world.sharks.copy():
           old_x , old_y = shark.move(world)
