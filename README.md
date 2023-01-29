@@ -5,7 +5,7 @@ Version 1.0
 
 ## Description du Projet
 
-Ce projet a été réalisé par Rola, Jehad, Thomas et Rubic lors de la formation Tech IA chez Simplon HDF. Le but est de crée une simulation (Wa-Tor) utilisant le langage de programmation Python. 
+Ce projet a été réalisé par [@Rola](https://github.com/RolaMmss), [@Jehad](https://github.com/jadamin), [@Thomas](https://github.com/DonzerHD) et [@Rubic](https://github.com/ForskyOnly) lors de la formation Tech IA chez Simplon HDF. Le but est de crée une simulation (Wa-Tor) utilisant le langage de programmation Python. 
 
 
 - [Les règles de la Simulation Wa-Tor](https://en.wikipedia.org/wiki/Wa-Tor#Rules)

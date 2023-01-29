@@ -2,14 +2,33 @@ from world import World
 import random
 
 class Fish:
+    """Classe représentant un poisson dans un monde simulé
+
+    Attributs:
+        fish_count (int): Compteur de poissons créés
+    """
     fish_count = 0
     def __init__(self, x, y):
+        """Initialise un poisson avec des coordonnées x et y
+
+        Args:
+            x (int): Coordonnée x de la position du poisson
+            y (int): Coordonnée y de la position du poisson
+        """
         self.x = x
         self.y = y
         self.reproduction_number = 2
 
 
-    def move(self, world): 
+    def move(self, world):
+        """Fait bouger le poisson dans le monde simulé
+
+        Args:
+            world (World): Le monde simulé où le poisson se déplace
+
+        Returns:
+            tuple: Anciennes coordonnées x et y du poisson
+        """
         old_x = self.x
         old_y = self.y
         # Génère une liste de positions possibles pour le poisson de se déplacer
@@ -28,6 +47,14 @@ class Fish:
         return old_x , old_y
                 
     def reproduce(self, world, day, old_x, old_y):
+        """Fait reproduire le poisson dans le monde simulé
+
+        Args:
+            world (World): Le monde simulé où le poisson se reproduit
+            day (int): Le jour actuel de la simulation
+            old_x (int): Ancienne coordonnée x de la position du poisson
+            old_y (int): Ancienne coordonnée y de la position du poisson
+        """
         if day % self.reproduction_number == 0:
             if world.table[old_x][old_y] == "  ":
                 new_fish = Fish(old_x, old_y)
@@ -35,6 +62,14 @@ class Fish:
                 world.add_fish(new_fish)
                   
     def verification_move(self, world):
+        """Vérifie les positions possibles pour le poisson de se déplacer
+
+        Args:
+            world (World): Le monde simulé où le poisson se déplace
+
+        Returns:
+            list: Liste des positions possibles pour le poisson
+        """
         # Initialise une liste de positions possibles pour le poisson de se déplacer
         possible_positions = []
         #Boucle à travers les déplacements possibles pour le poisson (dx et dy peuvent prendre les valeurs -1, 0, 1)

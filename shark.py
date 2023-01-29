@@ -71,4 +71,5 @@ class Shark(Fish):
         for shark in world.sharks:
             if shark.energy <= 0:
                 world.table[shark.x][shark.y] = "  "
+                world.sharks.remove(shark)
             
